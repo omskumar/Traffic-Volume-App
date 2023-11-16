@@ -49,8 +49,10 @@ with st.form('user_inputs'):
   hour = st.selectbox('Choose hour', options=range(0,24))
   ml_model = st.selectbox('Select Machine Learning Model for Prediction', options = ['Decision Tree', 'Random Forest', 'AdaBoost', 'XGBoost'],
                           placeholder = 'Choose an option') 
+  #call dataframe that will be color coded
   ml_analysis_df = pd.read_csv('ml_analysis.csv')
   ml_analysis_df = ml_analysis_df[['ML Model', 'R2', 'RMSE']]
+  #color coding
   def color_coding(row):
     if row['ML Model'] == "XGBoost":
         return ['background-color: lime'] * len(row)
@@ -62,6 +64,7 @@ with st.form('user_inputs'):
   st.form_submit_button() 
 
 #get user inputted data into the correct form for the model
+#pre-process df
 df = pd.read_csv('Traffic_Volume.csv')
 df['month'] = pd.to_datetime(df['date_time']).dt.month_name()
 df['weekday'] = pd.to_datetime(df['date_time']).dt.day_name()
@@ -78,6 +81,7 @@ encode_dummy_df = pd.get_dummies(encode_df, columns = cat_var)
 # keep only the user inputed data
 user_encoded_df = encode_dummy_df.tail(1)
 
+#run user specified models
 if ml_model == 'Decision Tree':
     #decision tree prediction
     new_prediction_dt = dt_model.predict(user_encoded_df)
