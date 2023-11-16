@@ -1,0 +1,5 @@
+,ML Model,R2,RMSE
+0,Decision Tree,0.944,472.227
+1,Random Forest,0.943,476.435
+2,AdaBoost,0.33,1632.178
+3,XGBoost,0.953,430.963
