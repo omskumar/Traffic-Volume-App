@@ -87,7 +87,7 @@ user_encoded_df = encode_dummy_df.tail(1)
 if ml_model == 'Decision Tree':
     #decision tree prediction
     new_prediction_dt = dt_model.predict(user_encoded_df)
-    new_prediction_dt = new_prediction_dt.round().astype(int)
+    new_prediction_dt = new_prediction_dt.astype(int)
     #prediction
     st.write("Decision Tree Traffic Prediction: {}".format(*new_prediction_dt))
     st.subheader("Plot of Decision Tree Feature Importance:")
