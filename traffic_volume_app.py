@@ -105,7 +105,7 @@ elif ml_model == 'AdaBoost':
     #adaboost prediction
     new_prediction_ab = ab_model.predict(user_encoded_df)
     new_prediction_ab = new_prediction_ab.astype(int)
-    st.write("AdaBoost Traffic Prediction: {}".format(*new_prediction_ab), style="background-color:red")
+    st.write("AdaBoost Traffic Prediction: {}".format(*new_prediction_ab))
     st.subheader("Plot of AdaBoost Feature Importance:")
     #feature importance
     st.image('ab_feature_imp.svg')
