@@ -30,13 +30,14 @@ xgb_pickle = open('xgb_traffic_volume.pickle', 'rb')
 xgb_model = pickle.load(xgb_pickle) 
 xgb_pickle.close()
 
-#user form
+#pre-processing for user form
 df1 = pd.read_csv('Traffic_Volume.csv')
 df1['month'] = pd.to_datetime(df1['date_time']).dt.month_name()
 df1['weekday'] = pd.to_datetime(df1['date_time']).dt.day_name()
 df1['hour'] = pd.to_datetime(df1['date_time']).dt.hour
 df1['holiday'] = df1['holiday'].fillna("None")
 df2 = df1.drop(columns = ['traffic_volume','date_time','weather_description'])
+#user form
 with st.form('user_inputs'): 
   holiday = st.selectbox('Choose whether today is a designated holiday or not', options= df2['holiday'].unique())
   temp = st.number_input('Average temperature in Kelvin') 
